@@ -16,6 +16,30 @@ $(function(){
         showError("Your browser does not support Geolocation!");
     }
 
+    $("#Search").on("submit", (e) => {
+        e.preventDefault();
+
+        var inputValue = $('#myInput').val();
+        var weatherAPI = `https://api.openweathermap.org/data/2.5/forecast?q=${inputValue}&appid=${"f9f2846e1a5bd45c3f79d57ab52250a4"}&callback=?`
+
+        $.getJSON(weatherAPI, (response) => {
+
+            // Store the cache
+            localStorage.weatherCache = JSON.stringify({
+                timestamp:(new Date()).getTime(),   // getTime() returns milliseconds
+                data: response
+            });
+            if (!('error' in response)) {
+                locationSuccess({
+                    "coords": {
+                        "latitude": response.city.coord.lat,
+                        "longitude": response.city.coord.lon
+                    }
+                });
+            }
+        });
+    })
+
     // Get user's location, and use OpenWeatherMap
     // to get the location name and weather forecast
 
