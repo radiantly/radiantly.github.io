@@ -1,8 +1,58 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Go back from the depths whence you came from!</title>
-        <script>window.location = document.referrer;</script>
-    </head>
-    <body></body>
+<html lang="en">
+  <head>
+    <title>Hello!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        font-family: monospace;
+        margin: 0;
+        padding: 0;
+      }
+
+      .wb {
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        padding: 10px;
+      }
+    </style>
+  </head>  
+  <body>
+    <div class="wb" contenteditable></div>
+    
+    <script>
+      const wb = document.querySelector(".wb");
+      
+      if(localStorage.getItem("oldText") !== null) {
+          wb.innerText = JSON.parse(localStorage.getItem("oldText")).data;
+      }
+      
+      const connection = new WebSocket('wss://clint.glitch.me');
+      
+      connection.onopen = () => {
+        connection.send('{"new": true}') 
+      }
+
+      connection.onerror = (error) => {
+        console.log(`WebSocket error: ${error}`);
+        wb.innerText = `Refresh! An error occurred. Error: ${error}`;
+      }
+
+      connection.onmessage = (e) => {
+        var data = JSON.parse(e.data);
+        wb.innerText = data.data;
+        localStorage.setItem("oldText", e.data);
+      }
+
+      wb.addEventListener("keyup", () => {
+        connection.send(JSON.stringify({data: wb.innerText}));
+      });
+    </script>
+  </body>
 </html>
