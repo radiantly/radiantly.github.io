@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Source+Code+Pro:wght@300;400;500&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #eaeaea;
+}
+
+body {
+  background-color: rgba(3, 8, 15, 0.8);
+}
+
+.front {
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80")
+    no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.front .darkoverlay {
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+.front .container {
+  display: flex;
+  position: relative;
+  z-index: 2;
+  justify-content: center;
+  /*   align-items: center; */
+  height: 100%;
+  flex-direction: column;
+  padding-left: 50px;
+  max-width: 45vw;
+  padding-bottom: 7vh;
+}
+
+.front h1 {
+  font-family: "Source Code Pro";
+  font-weight: 300;
+  /*   padding-left: 40px; */
+  font-size: 3rem;
+  margin-bottom: 0;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.front p {
+  font-family: "Source Code Pro";
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.second {
+  min-height: 30vh;
+  background-color: rgba(3, 8, 15, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.second p {
+  font-family: Montserrat;
+  text-align: center;
+  max-width: 600px;
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+  max-width: 60vw;
+  font-weight: 400;
+}
+
+.third {
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1601795181574-b7f56568b6d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1875&q=80");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.third .container {
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 25px;
+  border-radius: 5px;
+  font-family: "Source Code Pro";
+}
+
+.outer {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.maincontainer {
+  position: relative;
+  /*   bottom: */
+}
+
+@media screen and (max-width: 1000px) {
+  .front .container {
+    max-width: 70vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .front .container {
+    max-width: 90vw;
+    text-align: center;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .front {
+    display: flex;
+    justify-content: center;
+  }
+  .front h1 {
+    font-size: 2.3rem;
+    font-weight: 500;
+  }
+  .front p {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  .second p {
+    max-width: 80vw;
+  }
+}
+
+.italicized {
+  font-style: oblique;
+}
